@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		
+		
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css" />
+
+		<style type="text/css">
+			
+
+			*{
+				font-family: "微软雅黑";
+			}
+			body{
+				background: white;
+			}
+			.mui-content{
+				background: white;
+			}
+			.mui-content .mui-input-group{
+				border: 0px solid burlywood;
+				width: 100%;
+				height: 160px;
+				border-bottom: 1px solid burlywood;
+			}
+			.mui-content .mui-input-group::after{
+				height: 0px;
+			}
+			.mui-content .mui-input-group .mui-input-row{
+				border: 1px solid goldenrod;
+				width: 90%;
+				top: 20px;
+				height: 120px;
+				border-radius: 10px;
+				background: white;
+				margin: auto;
+			}
+			.mui-content .mui-input-group .mui-input-row span{
+				font-size: 40px;
+				color: goldenrod;
+				margin-top: 40px;
+				margin-left: 30px;
+			}
+			
+			.mui-content .mui-card{
+				width: 90%;
+				margin-top: 20px;
+				margin-left: 5%;
+				border: 1px solid goldenrod;
+				border-radius: 10px;
+				-webkit-box-shadow: 2px 2px 3px goldenrod rgb(0,0,0,0.5);;
+				box-shadow: 2px 2px 3px goldenrod rgb(0,0,0,0.5);
+			}
+			.mui-content .mui-card .mui-card-header img{
+				/*width: 100%;*/
+				border-radius: 100%;
+			}
+			.mui-content .mui-card .mui-card-content img{
+				width: 100%;
+				
+				/*border-radius: 100%;*/
+			}
+			
+			.mui-content .mui-card .mui-card-header .p1{
+				
+				color: black;
+				font-size: 16px;
+				margin-top: 20px;
+			}
+			.mui-content .mui-card .mui-card-footer span{
+				color: grey;
+			}
+			.mui-content .mui-card .mui-card-footer::before{
+				height: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+				document.getElementById('dongtai').addEventListener('tap',function(){
+					mui.openWindow({
+						url:'update.html',
+						id:'update'
+					})
+				})
+			})
+			
+
+		</script>
+		<div class="mui-content">
+		    <div class="mui-input-group">
+		    	
+		    	<div class="mui-input-row" id="dongtai">
+			    	<span>发布</span>
+			    	<span class="mui-icon mui-icon-plusempty"></span>
+			    	<span>动态</span>
+		    	</div>
+		    </div>
+		    
+		    <div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<img src="image/超级截屏_20161118_142819.png" class="mui-pull-left" />
+					<p class="mui-pull-right">15:30</p>
+					
+					<div class="mui-media-body">
+						<h3>崽崽<h3/>
+					</div>
+					<p class="p1">超级好吃的一家店好吃到爆，墙裂推荐！</p>
+					<!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
+					<h2>小M</h2>
+					<p>发表于 2016-06-30 15:30</p>-->
+				</div>
+				<div class="mui-card-content" >
+					<img src="image/1.png" />
+				</div>
+				<div class="mui-card-footer">
+					<a class="mui-card-link"><span class="mui-icon mui-icon-undo"></span></a>
+					<a class="mui-card-link"><span class="mui-icon mui-icon-chat"></span></a>
+					<a class="mui-card-link"><span class="mui-icon-extra mui-icon-extra-heart"></span></a>
+					<a class="mui-card-link"><span class="mui-icon mui-icon-plusempty"></span></a>
+				</div>
+			</div>
+			
+			 <div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<img src="image/超级截屏_20161118_142819.png" class="mui-pull-left" />
+					<p class="mui-pull-right">15:30</p>
+					
+					<div class="mui-media-body">
+						<h3>崽崽<h3/>
+					</div>
+					<p class="p1">超级好吃的一家店好吃到爆，墙裂推荐！</p>
+					<!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
+					<h2>小M</h2>
+					<p>发表于 2016-06-30 15:30</p>-->
+				</div>
+				<div class="mui-card-content" >
+					<img src="image/1.png" />
+				</div>
+				<div class="mui-card-footer">
+					<a class="mui-card-link"><span class="mui-icon mui-icon-undo"></span></a>
+					<a class="mui-card-link"><span class="mui-icon mui-icon-chat"></span></a>
+					<a class="mui-card-link"><span class="mui-icon-extra mui-icon-extra-heart"></span></a>
+					<a class="mui-card-link"><span class="mui-icon mui-icon-plusempty"></span></a>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+	</body>
+
+</html>

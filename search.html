@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+		    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+		    <div class="mui-input-row mui-search mui-title" style="width: 75%;">
+				<input id="search1" type="search" class="mui-input-clear" placeholder="搜菜谱，食材">
+			</div>
+		</header>
+		<div class="mui-content" id="ul">
+			<br>
+		    <button type="button" class="mui-btn mui-btn-grey">分类</button>
+		    <br>
+		    <br>
+		    <button type="button" class="mui-btn mui-btn-grey">川菜</button>
+		
+			<ul class="mui-table-view">
+				<script id='caipu' type="text/template">
+				 <% for(var i = 0;i<data.length;i++){ var item = data[i]; %>
+				        <li class="mui-table-view-cell" data-id ="<%=item.id%>">
+				            <a class="mui-navigate-right" style="line-width: 50%;">
+				                <img src="<%=item.albums[0]%>" style = " width='100%' height='auto' "/>
+				            </a>
+				        </li>
+				 <%}%>   
+			      
+			    </script> 
+			    
+			   
+			</ul>
+			
+		</div>
+		<script type="text/javascript">
+			
+			mui.plusReady(function(){
+				mui("#ul").on("tap","button",function(){
+					var url = "http://apis.juhe.cn/cook/index";
+					mui.ajax(url,{
+						data:{
+							cid:"10",
+							key:"5f1892a52a94a2173c5b10ec380a6cce"
+						},
+						type:'get',
+						success: function(data){
+							alert(JSON.stringify(data));
+						},
+						error: function(erro){
+							alert('错误:'+JSON.stringify(erro));
+							
+							
+						}
+						
+					})
+					
+				})
+			})
+			
+		</script>
+		
+		
+	</body>
+
+</html>

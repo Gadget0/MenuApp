@@ -1,0 +1,348 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+
+		<style type = "text/css">
+			body{
+				background: white;
+			}
+			.mui-content{
+				background:transparent;
+			}
+			 .mui-bar.mui-bar-nav{
+				background: transparent;
+				margin-top: 20px;
+				/*border: 1px solid black;*/
+			}
+			.mui-bar-nav{
+				    -webkit-box-shadow: 0 0px 0px ;
+				    box-shadow: 0px 0px 0px;
+		
+			}
+			.mui-bar-nav ~ .mui-content
+			{
+			    padding-top: 0px;
+			}
+			 .mui-bar.mui-bar-nav a{
+				color: white;
+				font-size: 26px;
+				
+			}
+			.mui-bar.mui-bar-nav .mui-action-back span{
+				
+				font-size: 17px;
+				font-weight: bold;
+				text-decoration: underline;
+			}
+			.mui-content .div0{
+				background:transparent;
+				/* For Firefox3.6+ */
+				-webkit-box-shadow:1px 0 1px 15px lightgray;     /* For Chrome5+, Safari5+ */
+				box-shadow:inset 0px 25px 60px 0px lightgray,inset 0px -1px 10px 0px lightgray;               /* For Latest Opera */
+				border: 1px solid transparent;
+				
+				width: 100%;
+				
+				height: 77.5vw;
+				/*border: 1px solid green;*/
+			}
+			.mui-content .div1{
+				height: 351px;
+				border: 1px solid transparent;
+			}
+			
+			.mui-content .div1 .div2{
+				 margin-top:65vw;
+				 margin-left: 81%;
+				 width: 17.5%;
+				 height: 17.5vw;
+				 border: 1px solid whitesmoke;
+				 background: white;
+			}
+			.mui-scroll{
+				background: white;
+			}
+			
+			.div2 img{
+				width: 100%;
+				height: 100%;
+			}
+			.mui-table-view:before{
+				height: 0px;
+			}
+			.mui-table-view{
+				margin-top: 10px;
+			}
+			.mui-table-view-cell{
+				padding-top:20px ;
+			}
+			.mui-table-view .mui-media-img{
+				
+				width: 85%;
+				min-height: 5vw;
+				margin-left: 14%;
+			
+			}
+			.mui-table-view .mui-media-img img{
+				width: 33%;
+				float: left;
+				padding: 1px;
+			}
+			.mui-table-view .mui-media-body span{
+				color: blueviolet;
+				font-family: "微软雅黑";
+				font-size: 17px;
+				font-weight: bolder;
+				padding-bottom: 3px;
+			}
+			.mui-table-view .mui-media-body p{
+				color: black;
+				font-size:16px;
+				padding-top:10px ;
+				font-family: "微软雅黑";
+				padding-bottom:8px ;
+			}
+			.mui-ellipsis {
+			    display: -webkit-box;
+			    overflow: hidden;
+			    white-space: normal!important;
+			    text-overflow: ellipsis;
+			    word-wrap: break-word;
+			    -webkit-box-orient: vertical;
+			}
+			.mui-table-view .mui-media-bottom{
+				float: left;
+				width: 100%;
+			}
+			.mui-table-view .mui-media-bottom .datetime{
+				margin-left: 14%;
+				font-size: 10px;
+				color: darkgrey;
+			}
+			.mui-table-view .mui-media-bottom .ic{
+				color: gray;
+				float: right;
+			}
+			a:active{
+				background: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			
+			
+			
+			mui.init({
+				pullRefresh:{
+					container:"#scrol",
+//					style:'circle',
+					down:{
+						
+						height:50,//可选,默认50.触发下拉刷新拖动距离,
+//    					auto: true,//可选,默认false.首次加载自动下拉刷新一次
+      					contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+      					contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+      					contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+						callback:function(){
+							setTimeout(function(){
+								
+							
+								var str1 = "<li class='mui-table-view-cell mui-media'><a href='javascript:;'>"+
+											"<img class='mui-media-object mui-pull-left' src='image/cbd.jpg'>"+
+					            			"<div class='mui-media-body'>"+
+					                  		"<span>幸福</span>"+
+					                    	"<p class='mui-ellipsis'>能和心爱的是件幸福的噜怎么办？能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办v</p>"+
+					                    	"</div>"+
+					               			"<div class='mui-media-img'>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					               			"</div><div class='mui-media-bottom'><span class='datetime'>1小时前<span>"+
+					                  		"<span class=' mui-icon mui-icon-left-nav ic' ></span></div></a></li>";
+								document.getElementById("ul").innerHTML += str1;
+								
+								mui("#scrol").pullRefresh().endPulldownToRefresh();
+							},1000);
+						}
+					},
+					up:{
+						height:100,
+						contentdown:"",
+						contentover:"",
+						contentrefresh:"",
+						callback:function(){
+							
+							setTimeout(function(){
+							
+								var str1 = "<li class='mui-table-view-cell mui-media'><a href='javascript:;'>"+
+											"<img class='mui-media-object mui-pull-left' src='image/cbd.jpg'>"+
+					            			"<div class='mui-media-body'>"+
+					                  		"<span>幸福</span>"+
+					                    	"<p class='mui-ellipsis'>能和心爱的是件幸福的噜怎么办？能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办v</p>"+
+					                    	"</div>"+
+					               			"<div class='mui-media-img'>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					                	 	"<img src='image/cbd.jpg'/>"+
+					               			"</div><div class='mui-media-bottom'><span class='datetime'>1小时前<span>"+
+					                  		"<span class=' mui-icon mui-icon-left-nav ic' ></span></div></a></li>";
+								document.getElementById("ul").innerHTML += str1;
+
+								mui("#scrol").pullRefresh().endPullupToRefresh();
+							},1000);
+						}
+					}
+				}
+			})
+			
+	
+		
+		</script>
+		
+		<header class="mui-bar mui-bar-nav">
+			    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"><span>发现</span></a>
+			    <a class="mui-icon mui-icon-camera mui-pull-right" href="publish_.html"></a>
+			    
+		</header>
+		
+		<div class="mui-content">
+		    <div class="mui-scroll-wrapper" style="background: #303030;" id="scrol">
+		        <div class="mui-scroll">
+		        	<div class="div1" >
+					   <div class="div0" id="img_background">
+							<div class="div2" id="img_head"></div>	
+						</div>
+					</div>
+		             <ul class="mui-table-view",  id="ul">
+					        <li class="mui-table-view-cell mui-media">
+					            <a href="javascript:;">
+					                <img class="mui-media-object mui-pull-left" src="image/cbd.jpg">
+					               
+					                <div class="mui-media-body">
+					                  	<span>幸福</span>
+					                    <p class="mui-ellipsis">能和心爱的是件幸福的噜怎么办？能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办v</p>
+					                </div>
+					                <div class="mui-media-img">
+					                	 <img src="image/cbd.jpg"/>
+					                	 <img src="image/cbd.jpg"/>
+					                	 <img src="image/cbd.jpg"/>
+					                	 <img src="image/cbd.jpg"/>
+					                	 <img src="image/cbd.jpg"/>
+					               	</div>
+					                <div class="mui-media-bottom">
+					                    	<span class="datetime">1小时前<span>
+					                  		<span class=" mui-icon mui-icon-left-nav ic" ></span>
+					                </div>
+					            </a>
+					        </li>
+						</ul>   
+		           
+		        </div>
+		    </div>
+		    
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		
+		//背景换照片
+		document.getElementById("img_background").addEventListener("tap",function(){
+			var btnArray = [{title:"拍照"},{title:"从手机相册选择"}];
+			plus.nativeUI.actionSheet({
+				title:"更换背景图片",
+				cancel:"取消",
+				buttons:btnArray
+			},function(e){
+				var index = e.index;
+				switch (index){
+					case 0:
+						break;
+					case 1:
+						var carmer = plus.camera.getCamera();
+						carmer.captureImage(function(path){
+						
+						var p = plus.io.convertLocalFileSystemURL(path);
+							plus.gallery.save(p,function(){
+								alert("保存的系统相册");
+							},
+							function(){
+								alert("照片保存失败");
+							});
+							document.getElementById("img_background").style.background = "url("+p+") center center no-repeat";
+							document.getElementById("img_background").style.backgroundSize = "cover";
+							
+							},function(){
+							alert("获取图片失败");
+						})
+						break;
+					case 2:
+						plus.gallery.pick(function(path){	
+							document.getElementById("img_background").style.background = "url("+path+") center center no-repeat";
+							document.getElementById("img_background").style.backgroundSize = "cover";
+							
+						},function(){
+										alert("照片选择失败");
+					})
+						break;
+				}
+	
+			})
+		})
+		
+	
+		//头像换照片
+		document.getElementById("img_head").addEventListener("tap",function(){
+			var btnArray = [{title:"拍照"},{title:"从手机相册选择"}];
+			plus.nativeUI.actionSheet({
+				title:"更换头像",
+				cancel:"取消",
+				buttons:btnArray
+			},function(e){
+				var index = e.index;
+				switch (index){
+					case 0:
+						break;
+					case 1:
+						var carmer = plus.camera.getCamera();
+						carmer.captureImage(function(path){
+						
+						var p = plus.io.convertLocalFileSystemURL(path);
+							plus.gallery.save(p,function(){
+								alert("保存的系统相册");
+							},
+							function(){
+								alert("照片保存失败");
+							});
+							document.getElementById("img_head").innerHTML ="<img src='"+p+"'/>";
+							
+							},function(){
+							alert("获取图片失败");
+						})
+						break;
+					case 2:
+						plus.gallery.pick(function(path){	
+								document.getElementById("img_head").innerHTML = "<img src='"+path+"'/>";
+							},function(){
+											alert("照片选择失败");
+						})
+						break;
+				}
+	
+			})
+		})
+
+	</script>
+
+</html>

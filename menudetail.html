@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+			.mui-input-group{
+				width: 95%;
+				margin: auto;
+				background: white;
+			}
+			.mui-content .mui-input-group .mui-input-row.t1{
+				height: auto;
+			}
+			.mui-content .mui-input-group .mui-input-row.t1 img{
+				width: 100%;
+				
+			}
+			.mui-content .mui-input-group .mui-input-row.l1 label{
+				font-size: 1.2rem;
+				font-weight: bold;
+				font-family: "微软雅黑";
+				font-style: italic;
+			}
+			.mui-input-group .mui-input-row:after {
+			 	height: 0px;
+			}
+			.mui-input-group:before{
+				height: 0px;
+			}
+			.mui-content .mui-input-group .mui-input-row label{
+				font-size: 1rem;
+				font-weight: bold;
+				font-family: "微软雅黑";
+			}
+			.mui-content .mui-input-group .mui-input-group{		
+			}
+			.mui-content .mui-input-group .mui-input-group span{
+				font-size: 0.8em;
+				font-family: "微软雅黑";
+			}
+			.mui-input-group:after{
+				height: 0px;
+			}
+			.imglist{
+				width: 100%;
+				/*float: right;*/
+			}
+			.imglistparent{
+				width: 50%;
+			}
+			.mui-ellipsis {
+				font-size: 15px;
+				font-family: "微软雅黑";
+			    display: -webkit-box;
+			    color: black;
+			    /*overflow: hidden;*/
+			    white-space: normal!important;
+			    text-overflow: ellipsis;
+			    word-wrap: break-word;
+			    -webkit-box-orient: vertical;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title" id="title"></h1>
+		</header>
+		<div class="mui-content">
+		    <div class="mui-input-group" >
+		    	<div class="mui-input-row t1" >
+		    		<img id="albums"/>
+		    	</div>
+		    </div>
+		    
+		    <div class="mui-input-group" >
+		    	<div class="mui-input-row">
+		    		<label>菜品详情</label>
+		    	</div>
+		    	<div class="mui-input-group" >
+		    		<span id="imtro"></span>
+		    	</div>
+		    </div>
+		    
+		    <div class="mui-input-group" >
+		    	<div class="mui-input-row">
+		    		<label>主料表:</label>
+		    	</div>
+		    	<div class="mui-input-group">
+		    		<span id="ingredients"></span>
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label>赋料表:</label>
+		    	</div>
+		    	<div class="mui-input-group">
+		    		<span id="burden"></span>
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label>制作步骤</label>
+		    	</div>
+		    	
+		    	<div class="mui-input-group">
+		    		<ul class="mui-table-view"  id="steplist">
+		    			
+		    		</ul>
+		    	</div>
+		    </div>
+		   
+					
+				
+				
+				
+				<script id='step' type="text/template">
+					<% for(var i = 0;i<steps.length;i++){ var item = steps[i]; %>
+						
+						<li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <img class="mui-media-object mui-pull-right" style=" line-height:40%; max-width: 40%; height: auto; " src="<%=item.img%>">
+					            <div class="mui-media-body"><p class="mui-ellipsis"><%=item.step%></p></div>
+					        </a>
+					   </li>
+				    <%}%>
+				  </script>
+				
+		   
+		</div>
+		
+		
+		
+		
+		<!--这个东西用来显示模板-->
+		<script src="js/template-web.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js"></script>
+		<script type = "text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				console.log('开始')
+				//console.log(localStorage.getItem('caipin'))
+				
+				//获取当前窗口
+				var self = plus.webview.currentWebview();
+				
+				var nowid = self.caipinid;
+				
+				console.log('nowid:'+nowid)
+				
+				
+				//localStorage.getItem("caipin");  取值
+				//localStorage.setItem("caipin","values"); 设值
+				
+				//JSON.stringfy()将对象，数组转化成字符串
+				//JSON.parse()将字符串转化成JSON
+				var caipinList = JSON.parse( localStorage.getItem("caipin") );
+				
+				var detail = null;
+				
+				//从所有数据中找到id对应的字段
+				for( var i = 0; i < caipinList.data.length; i++ ) {
+					
+					console.log('id:' + caipinList.data[i].id );
+					
+					if( caipinList.data[i].id == nowid ) {
+						detail = caipinList.data[i];
+						break;
+					}
+				}
+				if( detail ) {
+					document.getElementById("title").innerHTML = detail.title;
+					
+					//setAttribute() 方法添加指定的属性，并为其赋指定的值
+					document.getElementById("albums").setAttribute("src",detail.albums);
+					document.getElementById("imtro").innerHTML = detail.imtro;
+					document.getElementById("burden").innerHTML = detail.burden;
+					document.getElementById("ingredients").innerHTML = detail.ingredients;
+					
+					document.getElementById("steplist").innerHTML = template("step", detail);
+				}
+			})
+			
+		</script>
+	</body>
+
+</html>

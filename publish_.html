@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body{
+				background: white;
+			}
+			.mui-bar.mui-bar-nav{
+				padding-top: 30px;
+				padding-bottom: 30px;
+				height: 50px;
+				
+				background:white;
+				/*border: 1px solid red;*/
+			}
+			.a_left{ color: black; text-decoration: underline; font-family: "微软雅黑";}
+			.a_right{ color: green; text-decoration: underline; font-family: "微软雅黑";}
+			
+			.mui-bar-nav .mui-content{
+				padding-top: 0px;
+				background: white;
+				/*border: 1px saddlebrown;*/
+				width: 100%;
+				
+			}
+			.mui-bar-nav{
+				     -webkit-box-shadow: 0 0px 0px #ccc; 
+    				 box-shadow: 0 0px 0px #ccc; 
+
+			}
+			.mui-input-group:before{
+				height: 0px;
+			}
+			.mui-input-group:after{
+				height: 0px;
+			}
+			.mui-content .mui-input-group:nth-child(1){
+				width: 100%;
+				padding-top: 50px;
+				/*border: 1px solid green;*/
+			}
+			.mui-ellipsis {
+				font-size: 20px;
+			    display: -webkit-box;
+			    overflow: hidden;
+			    white-space: normal!important;
+			    text-overflow: ellipsis;
+			    word-wrap: break-word;
+			    -webkit-box-orient: vertical;
+			}
+			.mui-content .mui-input-group:nth-child(2){
+				/*border: 1px solid gold;*/margin-left: 5%;
+			}
+			.mui-content .mui-input-group:nth-child(2) img{
+				/*border: 1px solid blue;*/
+				float: left;
+				margin-left: 5px;
+				margin-top:5px ;
+				width: 30%;
+				height: 30vw;
+				
+			}
+			.mui-content  a{
+				width: 29%;
+				height: 30vw;
+				float: left;
+				font-size: 122px;
+				margin-left: 5px;
+				margin-top:5px ;
+				color: gainsboro;
+				background: ghostwhite;
+				/*border: 1px solid royalblue;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-pull-left a_left">取消</a>
+			<a class="mui-action-back mui-pull-right a_right">发表</a>
+		</header>
+		<div class="mui-content">
+				<div class="mui-input-group">
+		    		<textarea  class="mui-ellipsis" rows="5" cols="" placeholder="这一刻的想法..."></textarea>
+		   		</div>
+		 	 	<div class="mui-input-group" id="img">
+
+					<img  src="image/t1.png" />
+		  		</div>  
+		  		<a id="picturn-btn" class="mui-icon mui-icon-plus"></a>
+			</div>
+	</body>
+	<script type="text/javascript">
+		document.getElementById("picturn-btn").addEventListener("tap",function(){
+			var btnArray = [{title:"拍照"},{title:"从手机相册选择"}];
+			plus.nativeUI.actionSheet({
+//				title:"",
+				cancel:"取消",
+				buttons:btnArray
+			},function(e){
+				var index = e.index;
+				switch (index){
+					case 0:
+						break;
+					case 1:
+						var carmer = plus.camera.getCamera();
+						carmer.captureImage(function(path){
+						
+						var p = plus.io.convertLocalFileSystemURL(path);
+							plus.gallery.save(p,function(){
+								alert("保存的系统相册");
+							},
+							function(){
+								alert("照片保存失败");
+							});
+								document.getElementById("img").innerHTML += "<img src='"+p+"'/>";
+							},function(){
+							alert("获取图片失败");
+						})
+						break;
+					case 2:
+						galleryImgs();
+						break;
+				}
+	
+			})
+		})
+		
+		function galleryImgs(){
+				// 从相册中选择图片
+//				outSet('从相册中选择多张图片：');
+			    plus.gallery.pick(function(e){
+			    	for(var i in e.files){
+//				    	outLine(e.files[i]);
+				    	document.getElementById("img").innerHTML += "<img src='"+e.files[i]+"'/>";
+			    	}
+			    }, function(e){
+			    	outSet('取消选择图片');
+			    },{filter:'image',multiple:true,system:false});
+		}
+		
+		mui("#img").on("swipeup","img", function(){
+			this.style.display="none";
+		})
+		mui("#img").on("swipedown","img", function(){
+			this.style.display="none";
+		})
+		mui("#img").on("swiperight","img", function(){
+			this.style.display="none";
+		})
+		mui("#img").on("swipeleft","img", function(){
+			this.style.display="none";
+		})
+		
+		
+		
+	</script>
+
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			*{
+				font-family: "微软雅黑";
+			}
+			body{
+				width: 100%;
+				background: transparent;
+			}
+			.mui-content{
+				margin: auto;
+				margin-top: 20px;
+				width: 100%;
+				background: transparent;
+			}
+			.mui-input-group::before{
+				height: 0px;
+			}
+			
+			.mui-input-group::after{
+				height: 0px;
+			}
+			
+			.mui-input-group.div1{
+				
+				width: 100%;
+				background: white;
+				height: 200px;
+				margin: auto;
+				border-radius: 10px;
+			}
+			.mui-input-group.div1 .IMG{
+				
+				margin-top: 60px;
+				margin-left: 43%;
+				
+				border-radius: 50%;
+				border-radius: 100% 100% 100% 100%;
+				width:80px;
+			}
+			.mui-input-group.div1 label{
+				
+				margin-left: 42%;
+				
+			}
+			
+			.mui-input-group.div2{
+				margin-top: 40px;
+				width: 90%;
+				margin: auto;
+				/*margin-left: 10%;*/
+			}
+			.mui-table-view:before {
+			  
+			    height: 0px;
+			}
+			.mui-input-group.div2 .mui-table-view .mui-table-view-cell .mui-navigate-right{
+				padding-top: 20px;
+				
+				font-size: 20px;
+				
+			}
+			.mui-input-group.div2 .mui-table-view .mui-table-view-cell {
+				padding-top: 20px;
+			
+				font-size: 20px;
+				
+			}
+			.mui-table-view::after{
+				left: 15px;
+			}
+			.mui-table-view-cell>a:not(.mui-btn).mui-active{
+				background: white;
+			}
+		</style>
+	</head>
+	
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				document.getElementById('deng').addEventListener('tap',function(){
+					mui.toast('请注册');
+					mui.openWindow({
+						url:'login.html',
+						id:'login.html',
+						show:{
+							 autoShow:true,
+							 aniShow:"zoom-fade-out",
+							 duration:1000
+						},
+						createNew:true
+					})
+				});
+				document.getElementById('setting').addEventListener('tap',function(){
+					mui.toast('我的设置');
+					mui.openWindow({
+						url:'setting.html',
+						id:'setting.html',
+						show:{
+							 autoShow:true,
+							 aniShow:"zoom-fade-out",
+							 duration:1000
+						},
+						createNew:true
+					})
+				});
+			})
+			  
+        
+   
+		</script>
+		<div class="mui-content" >
+			<div class="mui-input-group div1">
+				<img src="image/超级截屏_20161118_142819.png" id="deng" class="IMG"/>
+				
+				<label>薛定谔的猫</label>
+				
+			</div>
+			<div class="mui-input-group div2" >
+				<ul class="mui-table-view">
+				    <li class="mui-table-view-cell">
+				    	<a class="mui-navigate-right">我的资料</a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				    	<a class="mui-navigate-right">我的关注</a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				    	<a class="mui-navigate-right">我的收藏</a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				    	<a class="mui-navigate-right" href="friend_circle.html">我的动态</a>
+				    </li>
+				    <li class="mui-table-view-cell">
+				    	<a class="mui-navigate-right">我的会员</a>
+				    </li>
+				    <li class="mui-table-view-cell" id="setting">
+				    	<a class="mui-navigate-right">我的设置</a>
+				    </li>
+				</ul>
+			</div>
+			
+		    
+		</div>
+		
+		
+	</body>
+
+</html>

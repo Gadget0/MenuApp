@@ -1,0 +1,93 @@
+.mui-input-row {
+				/*clear: left;*/
+		overflow: hidden
+}
+			
+			.mui-slider {
+				width: 95%;
+				margin: auto;
+				border-radius: 15px 15px 15px 15px;
+				top: 10px;
+			}
+			
+			.mui-tab-label {
+				font-family: '微软雅黑';
+			}
+			
+			.mui-content {
+				background: white;
+			}
+			
+			.mui-bar {
+				background: white;
+			}
+			
+			.mui-input-group::before {
+				height: 0px;
+			}
+			
+			.mui-input-group .mui-input-row::after {
+				background-color: white;
+			}
+			
+			.mui-table-view.mui-grid-view .mui-table-view-cell.mui-media a img {
+				border-radius: 10%;
+				height: 100px;
+			}
+			
+			.mui-table-view.mui-grid-view .mui-table-view-cell.mui-media a .mui-media-body {
+				font-family: "微软雅黑";
+			}
+			
+			.mui-table-view.mui-grid-9 .mui-table-view-cell.mui-active {
+				background: white;
+			}
+			
+			.mui-table-view.mui-grid-9 .mui-table-view-cell {
+				border-right: 1px solid white;
+				border-bottom: 1px solid white;
+			}
+			
+			.mui-input-group.div_middle {
+				height: 50px;
+			}
+			
+			.mui-input-group.div_middle .mui-input-row {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group.div_middle .mui-input-row label {
+				padding-top: 20px;
+				font-weight: bold;
+			}
+			
+			.mui-input-group:after {
+				height: 0px;
+			}
+			
+			.mui-grid-view.mui-grid-9 {
+				background: white;
+				border: 0px;
+			}
+			
+body {
+	background: white;
+}
+.mui-bar-tab .mui-tab-item.mui-active {
+	font: bolder;
+}
+			
+.mui-bar-tab .mui-tab-item.mui-active {
+	color: black;
+	font-weight: bold;
+	background: burlywood;
+}
+			
+			.mui-bar {
+				-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+				box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+			}
+			
+			.mui-bar.mui-bar-nav {
+				top: 10px;
+			}

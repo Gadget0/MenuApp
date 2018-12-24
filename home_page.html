@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-input-row {
+				/*clear: left;*/
+				overflow: hidden
+			}
+			
+			.mui-slider {
+				width: 95%;
+				margin: auto;
+				border-radius: 15px 15px 15px 15px;
+				top: 10px;
+			}
+			
+			.mui-tab-label {
+				font-family: '微软雅黑';
+			}
+			
+			.mui-content {
+				background: white;
+			}
+			
+			.mui-bar {
+				background: white;
+			}
+			
+			.mui-input-group::before {
+				height: 0px;
+			}
+			
+			.mui-input-group .mui-input-row::after {
+				background-color: white;
+			}
+			
+			.mui-table-view.mui-grid-view .mui-table-view-cell.mui-media a img {
+				border-radius: 10%;
+				height: 100px;
+			}
+			
+			.mui-table-view.mui-grid-view .mui-table-view-cell.mui-media a .mui-media-body {
+				font-family: "微软雅黑";
+			}
+			
+			.mui-table-view.mui-grid-9 .mui-table-view-cell.mui-active {
+				background: white;
+			}
+			
+			.mui-table-view.mui-grid-9 .mui-table-view-cell {
+				border-right: 1px solid white;
+				border-bottom: 1px solid white;
+			}
+			
+			.mui-input-group.div_middle {
+				height: 50px;
+			}
+			
+			.mui-input-group.div_middle .mui-input-row {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group.div_middle .mui-input-row label {
+				padding-top: 20px;
+				font-weight: bold;
+			}
+			
+			.mui-input-group:after {
+				height: 0px;
+			}
+			
+			.mui-grid-view.mui-grid-9 {
+				background: white;
+				border: 0px;
+			}
+			
+			body {
+				background: white;
+			}
+			
+			.mui-bar-tab .mui-tab-item.mui-active {
+				font: bolder;
+			}
+			
+			.mui-bar-tab .mui-tab-item.mui-active {
+				color: black;
+				font-weight: bold;
+				background: burlywood;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+				box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+			}
+			
+			.mui-bar.mui-bar-nav {
+				top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-input-row mui-search">
+				<input id="search1" type="search" class="mui-input-clear" placeholder="搜菜谱，食材">
+
+			</div>
+		</header>
+
+		<div class="mui-content">
+			<button type="button" class="mui-btn mui-btn-blue">searc</button>
+			<div class="mui-slider slider1" id="ms" style="height: 200px;">
+				<div class="mui-slider-group mui-slider-loop">
+
+					<!--轮播循环，需要加入mui-slider-loop-->
+					<!--循环轮播循环时，需要增加2张重复照片（此处最后一张）-->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a>
+							<img src="image/3.jpg" width="100%" />
+
+						</a>
+					</div>
+					<!--1-->
+					<div class="mui-slider-item ">
+						<a>
+							<img src="image/1.png" width="100%" />
+						</a>
+					</div>
+					<!--2-->
+					<div class="mui-slider-item">
+						<a>
+							<img src="image/2.jpg" width="100%" />
+
+						</a>
+					</div>
+					<!--3-->
+					<div class="mui-slider-item ">
+						<a>
+							<img src="image/3.jpg" width="100%" />
+
+						</a>
+					</div>
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a>
+							<img src="image/1.png" width="100%" />
+
+						</a>
+					</div>
+
+					<!--循环轮播循环时，需要增加2张重复图片（此处放第一张）-->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a>
+							<img src="image/t1.png" width="100%" />
+
+						</a>
+					</div>
+				</div>
+
+				<div class="mui-slider-indicator mui-text-right">
+					<!--轮播指示器-->
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+			<div class="mui-input-group div_middle">
+				<div class="mui-input-row" id="search"><label>八大菜系</label></div>
+			</div>
+			
+			
+			<ul class="mui-table-view mui-grid-view mui-grid-9" id="caipulist">
+				
+				
+				<script id='caipu' type="text/template">
+					
+					<% for(var i = 0;i<data.length;i++){ var item = data[i]; %>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" data-id = "<%=item.id%>">
+							<a href="#">
+								<img src="<%=item.albums[0]%>" />
+								<div class="mui-media-body"><%=item.title%></div>
+							</a>
+						</li>
+					<%}%>
+					
+				</script>
+				
+				
+				
+
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/chuan.png" />
+						<div class="mui-media-body">川菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/hui.jpg" />
+						<div class="mui-media-body">徽菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/lu.jpg" />
+						<div class="mui-media-body">鲁菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/min.jpg" />
+						<div class="mui-media-body">闽菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/shu.jpg" />
+						<div class="mui-media-body">苏菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/xiang.jpg" />
+						<div class="mui-media-body">湘菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/yue.jpg" />
+						<div class="mui-media-body">粤菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img src="image/zhe.jpg" />
+						<div class="mui-media-body">浙菜</div>
+					</a>
+				</li>
+			</ul>
+
+		</div>
+
+		<nav class="mui-bar mui-bar-tab" id="nv">
+			<a class="mui-tab-item mui-active" id="home1">
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" id="home2">
+				<span class="mui-tab-label">社区</span>
+			</a>
+			<a class="mui-tab-item" id="home3">
+
+				<span class="mui-tab-label">榜单</span>
+			</a>
+			<a class="mui-tab-item" id="home4">
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<!--<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">标题</h1>
+		</header>-->
+		<script src="js/template-web.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				subpages: [{
+					url: 'home_page.html',
+					id: 'home1'
+					//		                            styles:{  
+					//		                                top:'0px'
+					//		                            }  
+				}],
+				preloadPages: [{
+					url: 'community_page.html',
+					id: 'home2',
+					styles: {
+						top: '0px',
+						bottom: '50px'
+					}
+				}, {
+					url: 'list_page.html',
+					id: 'home3',
+					styles: {
+						top: '0px',
+						bottom: '50px'
+					}
+				}, {
+					url: 'mine_page.html',
+					id: 'home4',
+					styles: {
+						top: '0px',
+						bottom: '50px'
+					}
+				}]
+			});
+
+			document.getElementById('home1').addEventListener('tap', function() {
+				home1 = plus.webview.getWebviewById("home1");
+				home2 = plus.webview.getWebviewById("home2");
+				home3 = plus.webview.getWebviewById("home3");
+				home4 = plus.webview.getWebviewById("home4");
+				home1.show();
+				home2.hide();
+				home3.hide();
+				home4.hide();
+			})
+			document.getElementById('home2').addEventListener('tap', function() {
+				home2 = plus.webview.getWebviewById("home2");
+				home2.show();
+			})
+			document.getElementById('home3').addEventListener('tap', function() {
+				home3 = plus.webview.getWebviewById("home3");
+				home3.show();
+			})
+			document.getElementById('home4').addEventListener('tap', function() {
+				home4 = plus.webview.getWebviewById("home4");
+				home4.show();
+			})
+
+
+
+			mui.plusReady(function() {
+				mui('#ms').slider({
+					interval: 2000
+				});
+				
+				document.getElementById('ms').addEventListener('tap', function() {
+					mui.toast('进入详情页');
+					mui.openWindow({
+						url: 'particular_page.html',
+						id: 'particular_page.html',
+						createNew: true
+					})
+				});
+				
+				
+				
+				document.getElementById("search").addEventListener("tap", function() {
+					
+					
+					var str = document.getElementById("search1").value;
+					
+					
+					mui.toast("begin" + str);
+					
+					//请求的ip地址
+					var url = "http://apis.juhe.cn/cook/query.php";
+					
+					
+					mui.ajax(url, {
+						
+						//menu请求的菜品名字
+						//key用户的信息
+						data: {
+							menu: str,
+							key: "5f1892a52a94a2173c5b10ec380a6cce"
+						},
+						type: 'get',
+						success: function(data) {
+							//alert(JSON.stringify(data));
+							
+							//将获取的数据放到template中
+							document.getElementById("caipulist").innerHTML = template("caipu", data.result);
+							
+							//将信息存入本地缓存
+							localStorage.setItem("caipin",JSON.stringify(data.result));
+							bindTap();
+						},
+						error: function(err) {
+							alert('错误;' + JSON.stringify(err));
+						}
+					})
+
+				})
+				function bindTap(){
+					mui("#caipulist").on('tap',"li",function(){
+						console.log('dianji')
+						
+						//获取自定义的id
+						var id = this.dataset.id;
+						
+						mui.openWindow({
+							url:"menudetail.html",
+							id: "menudetail",
+							extras: {
+								caipinid:id
+							}
+						});
+					})
+				}
+			})
+		</script>
+	</body>
+
+</html>

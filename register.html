@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			*{
+				color: gold;
+			}
+			body{
+				background: white;
+			}
+			
+			.myback{
+				top: 160px;
+				width: 90%;
+				margin: auto;
+				background: transparent;
+			}
+			.mui-input-row .mytxt{
+				
+				color: burlywood;
+				padding-left: 0px;
+			}
+			.myIcon{
+				margin-left: 10px;
+				color: burlywood;
+			}
+			.mui-input-group:before, .mui-input-group:after{
+				background-color: transparent;
+			}
+			.mui-input-group .mui-input-row:after{
+				right: 15px;
+			}
+			.mui-btn.mui-btn-success{
+				background-color: burlywood;
+				border: 0px;
+			}
+			.mui-input-row .mui-input-clear~.mui-icon-clear.mui-active, .mui-input-row .mui-input-password~.mui-icon-eye.mui-active, .mui-input-row .mui-input-speech~.mui-icon-speech.mui-active {
+			    color: burlywood;
+			}
+			.mytxt::-webkit-input-placeholder{
+				/*color: white;*/
+			}
+			.btn_login{
+				top: 20px;
+			 	width: 200px;
+			 	margin: auto;
+			 	border-radius:20px;
+			 }
+			 .myback2{
+			 	margin-top:200px;
+			 	background: transparent;
+			 }
+			.wangji{
+			
+				
+				color: burlywood; 
+				border: 0px;
+				
+			}
+			.zhuche{
+			
+				margin-left: 208px;
+				padding-right: 9px;
+				color: burlywood;
+				border: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+	
+			
+		<div class="mui-content myback">
+		
+			<form  method="post" class="mui-input-group myback" >
+		    	<div class="mui-input-row">
+		    		<label><span class="mui-icon mui-icon-person myIcon"></span></label>
+		    		<input name="username" class="mui-input-clear mytxt" type="text" placeholder="请输入用户名"></input>
+			    </div>
+			    <br/>
+			    <div class="mui-input-row mytxt">
+		    		<label><span class="mui-icon mui-icon-locked myIcon"></span></label>
+		    		<input name="userpassword" class="mui-input-password mytxt" type="text" placeholder="请输入密码"></input>
+			    </div>
+			    <br/>
+			    <div class="mui-input-row mytxt">
+		    		<label><span class="mui-icon mui-icon-email myIcon"></span></label>
+		    		<input name="userpassword" class="mytxt" type="text" placeholder="请输入邮箱"></input>
+			    </div>
+			    <br/>
+			    <a href="login.html"><button type="button" class="mui-btn mui-btn-success mui-btn-block btn_login">注册</button></a>
+		   </form>
+		   <div class="mui-input-group myback2">
+		   		
+		   		
+		   </div>
+		  	
+		   
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		
+	</body>
+
+</html>

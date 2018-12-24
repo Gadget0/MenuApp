@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset = "UTF-8">
+		<title></title>
+		<meta name = "viewport" content = "width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href = "css/mui.min.css" rel = "stylesheet" />
+		
+		<style type = "text/css">
+			body{
+				background-color: white;
+			}
+			input[type=text]{
+				border: 0px;margin-bottom: 0px;
+			}
+			.input_title{
+				border: 0px;
+				
+			}
+			.input_span{
+				border: 0px;
+				width: 100%;
+				
+			}
+			textarea{
+				border: 0px;
+			}
+			
+			.mui-bar.mui-bar-nav .mui-action-back{
+				padding-top: 10px;
+				color: black;
+				text-decoration: underline;
+			}
+			.mui-content{
+				background-color: white;
+			}
+			
+			.mui-card{
+				    box-shadow: 0 0px 0px rgba(0,0,0,.3);
+			}
+			.mui-bar.bar1 {    
+				 border: 0px; 
+				 background-color: white; 
+     			 -webkit-box-shadow: 0 0 1px rgba(0,0,0,.85); 
+     			 box-shadow: 0 0 1px rgba(0,0,0,.85); 
+			}		
+			.mui-bar-nav.bar1{
+				    top: 0;
+    				-webkit-box-shadow: 0 0px 0px #ccc;
+    				box-shadow: 0 0px 0px #ccc;
+			}
+			.mui-bar.bar2{
+				-webkit-box-shadow: 0 0 0px rgba(0,0,0,.85); */
+     			box-shadow: 0 0 0px rgba(0,0,0,.85); 
+     		}	
+			.mui-content .mui-input-group.img{
+				width: 45%;
+				top: 1rem;
+				left: 2rem;
+				height: 100px;
+			}
+			
+			.mui-btn-green, .mui-btn-primary, input[type=submit] {
+			    color: #fff;
+			    border: 1px solid burlywood;
+			    background-color: burlywood;
+			}
+			
+			
+			
+		</style>
+	</head>
+
+	<body>
+		<header class = "mui-bar mui-bar-nav bar1">
+		    <a class="mui-action-back mui-pull-left">关闭</a>
+		    <h1 class="mui-title">分享快乐</h1>
+		    <a class="mui-action-back mui-pull-right">完成</a>
+		</header>
+		
+		<div class = "mui-content">
+		    <div class="mui-card">
+				<input type="text" class="input_title" placeholder="标题（20字以内）"/>
+				<hr width="92%" />
+				<div class="mui-card-content">
+					<textarea name="" placeholder="输入内容"  rows="100%" cols=""></textarea>
+				</div>
+				
+			</div>
+		 
+		</div>
+		<nav class="mui-bar mui-bar-tab bar2">
+		    <span style="color: gray; font-size:2rem;padding-left:2rem  ; line-height: 200%;" class="mui-icon mui-icon-image mui-pull-left"></span>
+		    <span style="color: gray; font-size:2rem;padding-right:2rem ;line-height: 200%;" class="mui-icon mui-icon-camera mui-pull-right"></span>
+		</nav>
+		<script src = "js/mui.min.js"></script>
+		<script type = "text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>
