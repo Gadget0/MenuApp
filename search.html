@@ -6,66 +6,242 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+			.mui-input-row {
+				/*clear: left;*/
+				overflow: hidden
+			}
+			
+			.mui-slider {
+				width: 95%;
+				margin: auto;
+				border-radius: 15px 15px 15px 15px;
+				top: 10px;
+			}
+			
+			.mui-tab-label {
+				font-family: '微软雅黑';
+			}
+			
+			.mui-content {
+				background: white;
+			}
+			
+			.mui-bar {
+				background: white;
+			}
+			
+			.mui-input-group::before {
+				height: 0px;
+			}
+			
+			.mui-input-group .mui-input-row::after {
+				background-color: white;
+			}
+			
+			.mui-table-view.mui-grid-view .mui-table-view-cell.mui-media a img {
+				border-radius: 10%;
+				height: 100px;
+			}
+			
+			.mui-table-view.mui-grid-view .mui-table-view-cell.mui-media a .mui-media-body {
+				font-family: "微软雅黑";
+			}
+			
+			.mui-table-view.mui-grid-9 .mui-table-view-cell.mui-active {
+				background: white;
+			}
+			
+			.mui-table-view.mui-grid-9 .mui-table-view-cell {
+				border-right: 1px solid white;
+				border-bottom: 1px solid white;
+			}
+			
+			.mui-input-group.div_middle {
+				height: 50px;
+			}
+			
+			.mui-input-group.div_middle .mui-input-row {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group.div_middle .mui-input-row label {
+				padding-top: 20px;
+				font-weight: bold;
+			}
+			
+			.mui-input-group:after {
+				height: 0px;
+			}
+			
+			.mui-grid-view.mui-grid-9 {
+				background: white;
+				border: 0px;
+			}
+			
+			body {
+				background: white;
+			}
+			
+			.mui-bar-tab .mui-tab-item.mui-active {
+				font: bolder;
+			}
+			
+			.mui-bar-tab .mui-tab-item.mui-active {
+				color: black;
+				font-weight: bold;
+				background: burlywood;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+				box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+			}
+			
+			.mui-bar.mui-bar-nav {
+				top: 10px;
+			}
+		</style>
 	</head>
 
 	<body>
 		<script src="js/mui.min.js"></script>
+		<script src="js/template-web.js"></script>
 		<script type="text/javascript">
 			mui.init()
 		</script>
 		<header class="mui-bar mui-bar-nav">
-		    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
-		    <div class="mui-input-row mui-search mui-title" style="width: 75%;">
-				<input id="search1" type="search" class="mui-input-clear" placeholder="搜菜谱，食材">
-			</div>
+			<form action="" >
+				<div class="mui-input-row mui-search">
+					<input id="search1" type="search" class="mui-input-clear" placeholder="搜菜谱，食材">
+				</div>
+			</form>
+			
 		</header>
-		<div class="mui-content" id="ul">
-			<br>
-		    <button type="button" class="mui-btn mui-btn-grey">分类</button>
-		    <br>
-		    <br>
-		    <button type="button" class="mui-btn mui-btn-grey">川菜</button>
-		
-			<ul class="mui-table-view">
-				<script id='caipu' type="text/template">
-				 <% for(var i = 0;i<data.length;i++){ var item = data[i]; %>
-				        <li class="mui-table-view-cell" data-id ="<%=item.id%>">
-				            <a class="mui-navigate-right" style="line-width: 50%;">
-				                <img src="<%=item.albums[0]%>" style = " width='100%' height='auto' "/>
-				            </a>
-				        </li>
-				 <%}%>   
-			      
-			    </script> 
-			    
-			   
+		<div class="mui-content" >	
+			<ul class="mui-table-view mui-grid-view mui-grid-9" id="ul">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="10">
+						<img src="image/chuan.png" />
+						<div class="mui-media-body">川菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="105">
+						<img src="image/hui.jpg" />
+						<div class="mui-media-body">徽菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="13">
+						<img src="image/lu.jpg" />
+						<div class="mui-media-body">鲁菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="101">
+						<img src="image/min.jpg" />
+						<div class="mui-media-body">闽菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="104">
+						<img src="image/shu.jpg" />
+						<div class="mui-media-body">苏菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="12">
+						<img src="image/xiang.jpg"  />
+						<div class="mui-media-body">湘菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="11">
+						<img src="image/yue.jpg" />
+						<div class="mui-media-body">粤菜</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" id="102" >
+						<img src="image/zhe.jpg" />
+						<div class="mui-media-body">浙菜</div>
+					</a>
+				</li>
 			</ul>
+	
+
+			
+		     	
+		    
 			
 		</div>
 		<script type="text/javascript">
 			
 			mui.plusReady(function(){
-				mui("#ul").on("tap","button",function(){
+				
+				mui("#ul").on("tap","li a",function(){
+					
+					var id = this.id;
+					
+					console.log(id);
+					
 					var url = "http://apis.juhe.cn/cook/index";
 					mui.ajax(url,{
 						data:{
-							cid:"10",
+							cid:id,
+							rn:"30",
 							key:"5f1892a52a94a2173c5b10ec380a6cce"
 						},
 						type:'get',
+						
 						success: function(data){
-							alert(JSON.stringify(data));
+							alert(JSON.stringify(data.result));
+							localStorage.setItem("caipin",JSON.stringify(data.result));
+							opensearch2();
 						},
 						error: function(erro){
 							alert('错误:'+JSON.stringify(erro));
-							
-							
 						}
-						
 					})
-					
 				})
+				
 			})
+			
+			document.getElementById("search1").addEventListener("keypress",function(event) {
+			    if(event.keyCode == "13") {
+			        document.activeElement.blur();//收起虚拟键盘
+			        alert("搜索成功");
+			        event.preventDefault(); // 阻止默认事件---阻止页面刷新
+			        var s1 = this.value;
+
+				    var url = "http://apis.juhe.cn/cook/query.php";
+				    mui.ajax(url,{
+				    	data:{
+				    		menu:s1,
+				    		rn:"30",
+				    		key:"5f1892a52a94a2173c5b10ec380a6cce"
+				    	},
+				    	type:'get',
+				    	success:function(data){
+				    		alert(JSON.stringify(data.result));
+				    		
+				    		localStorage.setItem("caipin",JSON.stringify(data.result));
+				    		opensearch2();
+				    	},
+				    	error: function(erro){
+				    		alert("错误："+JSON.stringify(error));
+				    	}
+				    })  
+			    }
+			});
+			function opensearch2(){
+				mui.openWindow({
+					url:"search2.html",
+					id:"search2"
+				})
+			}
 			
 		</script>
 		

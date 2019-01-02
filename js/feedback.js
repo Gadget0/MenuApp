@@ -12,11 +12,16 @@
 	var starIndex = 0;
 	var feedback = {
 		question: document.getElementById('question'), 
-		contact: document.getElementById('contact'), 
+		
+//		contact: document.getElementById('contact'), 			//#删除了
+		
 		imageList: document.getElementById('image-list'),
 		submitBtn: document.getElementById('submit')
 	};
-	var url = 'https://service.dcloud.net.cn/feedback';
+	
+	var user_id =  JSON.parse(localStorage.getItem("users")).user_id;
+	console.log(user_id);
+	var url = 'http://192.168.137.1:8000/uploder/';         //这个地方是访问的地址
 	feedback.files = [];
 	feedback.uploader = null;  
 	feedback.deviceInfo = null; 
@@ -39,7 +44,7 @@
 	 */
 	feedback.clearForm = function() {
 		feedback.question.value = '';
-		feedback.contact.value = '';
+	
 		feedback.imageList.innerHTML = '';
 		feedback.newPlaceholder();
 		feedback.files = [];
@@ -47,13 +52,7 @@
 		size = 0;
 		imageIndexIdNum = 0;
 		starIndex = 0;
-		//清除所有星标
-		mui('.icons i').each(function (index,element) {
-			if (element.classList.contains('mui-icon-star-filled')) {
-				element.classList.add('mui-icon-star')
-	  			element.classList.remove('mui-icon-star-filled')
-			}
-		})
+		
 	};
 	feedback.getFileInputArray = function() {
 		return [].slice.call(feedback.imageList.querySelectorAll('.file'));
@@ -76,10 +75,13 @@
 		var placeholder = document.createElement('div');
 		placeholder.setAttribute('class', 'image-item space');
 		var up = document.createElement("div");
+		
 		up.setAttribute('class','image-up')
 		//删除图片
 		var closeButton = document.createElement('div');
+		
 		closeButton.setAttribute('class', 'image-close');
+		
 		closeButton.innerHTML = 'X';
 		closeButton.id = "img-"+index;
 		//小X的点击事件
@@ -145,23 +147,20 @@
 	};
 	feedback.newPlaceholder();
 	feedback.submitBtn.addEventListener('tap', function(event) {
-		if (feedback.question.value == '' ||
-			(feedback.contact.value != '' &&
-				feedback.contact.value.search(/^(\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+)|([1-9]\d{4,9})$/) != 0)) {
-			return mui.toast('信息填写不符合规范');
+		if (feedback.question.value == '' ) {
+			return mui.toast('不符合规范');
 		}
-		if (feedback.question.value.length > 200 || feedback.contact.value.length > 200) {
-			return mui.toast('信息超长,请重新填写~')
+		if (feedback.question.value.length > 200) {
+			return mui.toast('文字超长')
 		}
 		//判断网络连接
 		if(plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_NONE){
 			return mui.toast("连接网络失败，请稍后再试");
 		}
-		feedback.send(mui.extend({}, feedback.deviceInfo, {
+		feedback.send(mui.extend({},{
 			content: feedback.question.value,
-			contact: feedback.contact.value,
 			images: feedback.files,
-			score:''+starIndex
+			score:	user_id	//这个地方传入的是users_id
 		})) 
 	}, false)
 	feedback.send = function(content) {
@@ -201,34 +200,12 @@
 		});
 		//开始上传任务
 		feedback.uploader.start();
-		mui.alert("感谢反馈，点击确定关闭","问题反馈","确定",function () {
+		mui.alert("发布成功","发布动态","确定",function () {
 			feedback.clearForm();
 			mui.back();
 		});
 //		plus.nativeUI.showWaiting();
 	};
 	
-	 //应用评分
-	 mui('.icons').on('tap','i',function(){
-	  	var index = parseInt(this.getAttribute("data-index"));
-	  	var parent = this.parentNode;
-	  	var children = parent.children;
-	  	if(this.classList.contains("mui-icon-star")){
-	  		for(var i=0;i<index;i++){
-  				children[i].classList.remove('mui-icon-star');
-  				children[i].classList.add('mui-icon-star-filled');
-	  		}
-	  	}else{
-	  		for (var i = index; i < 5; i++) {
-	  			children[i].classList.add('mui-icon-star')
-	  			children[i].classList.remove('mui-icon-star-filled')
-	  		}
-	  	}
-	  	starIndex = index;
-  });
-  	//选择快捷输入
-	mui('.mui-popover').on('tap','li',function(e){
-	  document.getElementById("question").value = document.getElementById("question").value + this.children[0].innerHTML;
-	  mui('.mui-popover').popover('toggle')
-	}) 
+	
 })();

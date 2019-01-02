@@ -143,11 +143,10 @@
 			mui.init({
 				pullRefresh:{
 					container:"#scrol",
-//					style:'circle',
+					style:'circle',
 					down:{
-						
 						height:50,//可选,默认50.触发下拉刷新拖动距离,
-//    					auto: true,//可选,默认false.首次加载自动下拉刷新一次
+      					auto: true,//可选,默认false.首次加载自动下拉刷新一次
       					contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
       					contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
       					contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
@@ -218,11 +217,11 @@
 		</header>
 		
 		<div class="mui-content">
-		    <div class="mui-scroll-wrapper" style="background: #303030;" id="scrol">
+		    <div class="mui-scroll-wrapper"  id="scrol">
 		        <div class="mui-scroll">
 		        	<div class="div1" >
 					   <div class="div0" id="img_background">
-							<div class="div2" id="img_head"></div>	
+							<div class="div2" id="img_head"> <img src="image/60x60.gif" /></div>	
 						</div>
 					</div>
 		             <ul class="mui-table-view",  id="ul">
@@ -256,6 +255,8 @@
 		
 	</body>
 	<script type="text/javascript">
+		
+	
 		
 		//背景换照片
 		document.getElementById("img_background").addEventListener("tap",function(){
@@ -292,6 +293,8 @@
 							document.getElementById("img_background").style.background = "url("+path+") center center no-repeat";
 							document.getElementById("img_background").style.backgroundSize = "cover";
 							
+							
+							
 						},function(){
 										alert("照片选择失败");
 					})
@@ -299,7 +302,7 @@
 				}
 	
 			})
-		})
+		})            
 		
 	
 		//头像换照片
@@ -334,14 +337,17 @@
 					case 2:
 						plus.gallery.pick(function(path){	
 								document.getElementById("img_head").innerHTML = "<img src='"+path+"'/>";
+								
+								localStorage.setItem("person",path);		
+						
 							},function(){
 											alert("照片选择失败");
 						})
-						break;
+		 				break;
 				}
 	
-			})
-		})
+		       	})
+		})   
 
 	</script>
 

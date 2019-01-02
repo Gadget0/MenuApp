@@ -107,14 +107,15 @@
 	<body>
 
 		<header class="mui-bar mui-bar-nav">
-			<div class="mui-input-row mui-search">
-				<input id="search1" type="search" class="mui-input-clear" placeholder="搜菜谱，食材">
-
-			</div>
+			<form action="">
+				<div class="mui-input-row mui-search">
+					<input id="search1" type="search" class="mui-input-clear" placeholder="搜菜谱，食材">
+				</div>
+			</form>
 		</header>
 
 		<div class="mui-content">
-			<button type="button" class="mui-btn mui-btn-blue">searc</button>
+			
 			<div class="mui-slider slider1" id="ms" style="height: 200px;">
 				<div class="mui-slider-group mui-slider-loop">
 
@@ -174,69 +175,51 @@
 			</div>
 			
 			
-			<ul class="mui-table-view mui-grid-view mui-grid-9" id="caipulist">
-				
-				
-				<script id='caipu' type="text/template">
-					
-					<% for(var i = 0;i<data.length;i++){ var item = data[i]; %>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" data-id = "<%=item.id%>">
-							<a href="#">
-								<img src="<%=item.albums[0]%>" />
-								<div class="mui-media-body"><%=item.title%></div>
-							</a>
-						</li>
-					<%}%>
-					
-				</script>
-				
-				
-				
-
+			<ul class="mui-table-view mui-grid-view mui-grid-9" id="ul">
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<a href="#" id="10">
 						<img src="image/chuan.png" />
 						<div class="mui-media-body">川菜</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<a href="#" id="105">
 						<img src="image/hui.jpg" />
 						<div class="mui-media-body">徽菜</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<a href="#" id="13">
 						<img src="image/lu.jpg" />
 						<div class="mui-media-body">鲁菜</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<a href="#" id="101">
 						<img src="image/min.jpg" />
 						<div class="mui-media-body">闽菜</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<a href="#" id="104">
 						<img src="image/shu.jpg" />
 						<div class="mui-media-body">苏菜</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
-						<img src="image/xiang.jpg" />
+					<a href="#" id="12">
+						<img src="image/xiang.jpg"  />
 						<div class="mui-media-body">湘菜</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<a href="#" id="11">
 						<img src="image/yue.jpg" />
 						<div class="mui-media-body">粤菜</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="#">
+					<a href="#" id="102" >
 						<img src="image/zhe.jpg" />
 						<div class="mui-media-body">浙菜</div>
 					</a>
@@ -324,76 +307,73 @@
 
 
 
-			mui.plusReady(function() {
-				mui('#ms').slider({
-					interval: 2000
-				});
+			mui.plusReady(function(){
 				
-				document.getElementById('ms').addEventListener('tap', function() {
-					mui.toast('进入详情页');
-					mui.openWindow({
-						url: 'particular_page.html',
-						id: 'particular_page.html',
-						createNew: true
-					})
-				});
-				
-				
-				
-				document.getElementById("search").addEventListener("tap", function() {
+				mui("#ul").on("tap","li a",function(){
 					
+					var id = this.id;
 					
-					var str = document.getElementById("search1").value;
+					console.log(id);
 					
-					
-					mui.toast("begin" + str);
-					
-					//请求的ip地址
-					var url = "http://apis.juhe.cn/cook/query.php";
-					
-					
-					mui.ajax(url, {
+					var url = "http://apis.juhe.cn/cook/index";
+					mui.ajax(url,{
+						data:{
+							cid:id,
+							rn:"30",
+							key:"5f1892a52a94a2173c5b10ec380a6cce"
+						},
+						type:'get',
 						
-						//menu请求的菜品名字
-						//key用户的信息
-						data: {
-							menu: str,
-							key: "5f1892a52a94a2173c5b10ec380a6cce"
-						},
-						type: 'get',
-						success: function(data) {
-							//alert(JSON.stringify(data));
-							
-							//将获取的数据放到template中
-							document.getElementById("caipulist").innerHTML = template("caipu", data.result);
-							
-							//将信息存入本地缓存
+						success: function(data){
+//							alert(JSON.stringify(data.result));
 							localStorage.setItem("caipin",JSON.stringify(data.result));
-							bindTap();
+							opensearch2();
 						},
-						error: function(err) {
-							alert('错误;' + JSON.stringify(err));
+						error: function(erro){
+							alert('错误:'+JSON.stringify(erro));
 						}
 					})
-
 				})
-				function bindTap(){
-					mui("#caipulist").on('tap',"li",function(){
-						console.log('dianji')
-						
-						//获取自定义的id
-						var id = this.dataset.id;
-						
-						mui.openWindow({
-							url:"menudetail.html",
-							id: "menudetail",
-							extras: {
-								caipinid:id
-							}
-						});
-					})
-				}
+				
 			})
+			
+			
+			document.getElementById("search1").addEventListener("keypress",function(event) {
+			    if(event.keyCode == "13") {
+			        document.activeElement.blur();//收起虚拟键盘
+//			        alert("搜索成功");
+			        event.preventDefault(); // 阻止默认事件---阻止页面刷新
+			        var s1 = this.value;
+					
+					
+				    var url = "http://apis.juhe.cn/cook/query.php";
+				    mui.ajax(url,{
+				    	data:{
+				    		menu:s1,
+				    		rn:"30",
+				    		
+				    		key:"5f1892a52a94a2173c5b10ec380a6cce"
+				    	},
+				    	type:'get',
+				    	success:function(data){
+//				    		alert(JSON.stringify(data.result));
+				    		
+				    		localStorage.setItem("caipin",JSON.stringify(data.result));
+				    		opensearch2();
+				    	},
+				    	error: function(erro){
+				    		alert("错误："+JSON.stringify(erro));
+				    	}
+				    })  
+			    }
+			});
+			function opensearch2(){
+				mui.openWindow({
+					url:"search2.html",
+					id:"search2"
+				})
+			}
+			
 		</script>
 	</body>
 

@@ -1,62 +1,63 @@
 {
-  "home_page.html": {
-    "refer": [
-      "community_page.html",
-      "list_page.html",
-      "mine_page.html",
-      "particular_page.html"
-    ],
-    "resources": [
-      "js/mui.min.js",
-      "image/zhe.jpg"
-    ]
-  },
-  "particular_page.html": {
-    "refer": [
-      "home_page.html"
-    ]
-  },
-  "login.html": {
-    "refer": [
-      "login.html",
-      "register.html",
-      "foundpassword.html",
-      "home_page.html"
-    ],
-    "resources": [
-      "js/mui.min.js",
-      "image/ýý*O_20161118_142819.png"
-    ]
-  },
-  "mine_page.html": {
-    "refer": [
-      "login.html",
-      "setting.html"
-    ]
-  },
-  "register.html": {
-    "refer": [
-      "login.html"
-    ]
-  },
-  "foundpassword.html": {
-    "refer": [
-      "login.html"
-    ]
-  },
-  "community_page.html": {
-    "refer": [
-      "update.html"
-    ]
-  },
-  "publish_.html": {
-    "refer": [
-      "friend_circle.html"
-    ]
-  },
-  "friend_circle.html": {
-    "refer": [
-      "publish_.html"
-    ]
-  }
+	"home_page.html": {
+		"refer": [
+			"community_page.html",
+			"list_page.html",
+			"mine_page.html",
+			"particular_page.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"image/zhe.jpg"
+		]
+	},
+	"particular_page.html": {
+		"refer": [
+			"home_page.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"login.html",
+			"register.html",
+			"foundpassword.html",
+			"home_page.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"image/ï¿½ï¿½*O_20161118_142819.png"
+		]
+	},
+	"mine_page.html": {
+		"refer": [
+			"login.html",
+			"setting.html",
+			"friend_circle_2.html"
+		]
+	},
+	"register.html": {
+		"refer": [
+			"login.html"
+		]
+	},
+	"foundpassword.html": {
+		"refer": [
+			"login.html"
+		]
+	},
+	"community_page.html": {
+		"refer": [
+			"update.html"
+		]
+	},
+	"publish_.html": {
+		"refer": [
+			"friend_circle.html"
+		]
+	},
+	"friend_circle.html": {
+		"refer": [
+			"publish_.html"
+		]
+	}
 }

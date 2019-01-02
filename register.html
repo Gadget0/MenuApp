@@ -73,32 +73,33 @@
 	</head>
 
 	<body>
-	
+		
 			
 		<div class="mui-content myback">
 		
-			<form  method="post" class="mui-input-group myback" >
+			<div   class="mui-input-group myback" >
 		    	<div class="mui-input-row">
 		    		<label><span class="mui-icon mui-icon-person myIcon"></span></label>
-		    		<input name="username" class="mui-input-clear mytxt" type="text" placeholder="请输入用户名"></input>
+		    		<input id="user_id" class="mui-input-clear mytxt" type="text" placeholder="请输入登陆账号"></input>
 			    </div>
 			    <br/>
 			    <div class="mui-input-row mytxt">
 		    		<label><span class="mui-icon mui-icon-locked myIcon"></span></label>
-		    		<input name="userpassword" class="mui-input-password mytxt" type="text" placeholder="请输入密码"></input>
+		    		<input id="user_password" class="mui-input-password mytxt" type="password" placeholder="请输入密码"></input>
 			    </div>
 			    <br/>
 			    <div class="mui-input-row mytxt">
 		    		<label><span class="mui-icon mui-icon-email myIcon"></span></label>
-		    		<input name="userpassword" class="mytxt" type="text" placeholder="请输入邮箱"></input>
+		    		<input id="user_name" class="mytxt" type="text" placeholder="请输入昵称"></input>
 			    </div>
 			    <br/>
-			    <a href="login.html"><button type="button" class="mui-btn mui-btn-success mui-btn-block btn_login">注册</button></a>
-		   </form>
-		   <div class="mui-input-group myback2">
+			    <button type="button" class="mui-btn mui-btn-success mui-btn-block btn_login" id="login">注册</button>
+		   		<button type="button" class="mui-btn mui-btn-success mui-btn-block btn_login mui-action-back" style="margin-top: 20px;">返回</button>
+			</div>
+		   <!--<div class="mui-input-group myback2">
 		   		
 		   		
-		   </div>
+		   </div>-->
 		  	
 		   
 		</div>
@@ -106,6 +107,43 @@
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init()
+			mui.plusReady(function(){
+				document.getElementById("login").addEventListener("tap",function(){
+				var str_id = document.getElementById("user_id").value;
+				var str_name = document.getElementById("user_name").value;
+			    var str_password = document.getElementById("user_password").value;
+			        var url = 'http://192.168.137.1:8000/regist/';
+			        mui.ajax(url,{
+			            
+			            type:'get',
+			             data:{
+			                "user_id":str_id,
+			                "user_password":str_password,
+			                "user_name":str_name,
+			            },
+			            success:function(res){
+			       
+			                if(res["code"]==200){
+//			                	alert("注册成功");
+			                	openlogin();
+			                }else if(res["code"]==404){
+			                	alert("该账号已有用户使用");
+			                }
+			            
+			            },
+			            error:function(err){
+			                alert("注册失败");
+			            }
+			        })      
+				})
+			})
+			
+			function openlogin(){
+				mui.openWindow({
+					url:"login.html",
+					id:"login"
+				})
+			}
 		</script>
 		
 	</body>

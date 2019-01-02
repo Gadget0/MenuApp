@@ -14,11 +14,19 @@
 				background: white;
 			}
 			.mui-content .mui-input-group .mui-input-row.t1{
+				padding-top: 20px;
+				width: 100%;
+				margin: auto;
 				height: auto;
 			}
 			.mui-content .mui-input-group .mui-input-row.t1 img{
-				width: 100%;
+				width:95%;
 				
+				margin-left:2.5% ;
+				height: 55vw;
+				border-radius: 10px;
+				/*border: 1px solid red;*/
+				box-shadow: 0 0 5px gray;
 			}
 			.mui-content .mui-input-group .mui-input-row.l1 label{
 				font-size: 1.2rem;
@@ -126,7 +134,7 @@
 					        </a>
 					   </li>
 				    <%}%>
-				  </script>
+				 </script>
 				
 		   
 		</div>
@@ -174,6 +182,7 @@
 					document.getElementById("title").innerHTML = detail.title;
 					
 					//setAttribute() 方法添加指定的属性，并为其赋指定的值
+					console.log(detail.albums);
 					document.getElementById("albums").setAttribute("src",detail.albums);
 					document.getElementById("imtro").innerHTML = detail.imtro;
 					document.getElementById("burden").innerHTML = detail.burden;

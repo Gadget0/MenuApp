@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			body {
+				background: white;
+			}
+			
+			.mui-content {
+				background: transparent;
+			}
+			
+			.mui-bar.mui-bar-nav {
+				background: transparent;
+				margin-top: 20px;
+				/*border: 1px solid black;*/
+			}
+			
+			.mui-bar-nav {
+				-webkit-box-shadow: 0 0px 0px;
+				box-shadow: 0px 0px 0px;
+			}
+			
+			.mui-bar-nav~.mui-content {
+				padding-top: 0px;
+			}
+			
+			.mui-bar.mui-bar-nav a {
+				color: white;
+				font-size: 26px;
+			}
+			
+			.mui-bar.mui-bar-nav .mui-action-back span {
+				font-size: 17px;
+				font-weight: bold;
+				text-decoration: underline;
+			}
+			
+			.mui-content .div0 {
+				background: transparent;
+				/* For Firefox3.6+ */
+				/*-webkit-box-shadow: 1px 0 1px 15px lightgray;*/
+				/* For Chrome5+, Safari5+ */
+				/*box-shadow: inset 0px 25px 60px 0px lightgray, inset 0px -1px 10px 0px lightgray;*/
+				/* For Latest Opera */
+				border: 1px solid transparent;
+				width: 100%;
+				height: 77.5vw;
+				/*border: 1px solid green;*/
+			}
+			
+			.mui-content .div1 {
+				height: 400px;
+				border: 1px solid transparent;
+			}
+			
+			.mui-content .div1 .div2 {
+				margin-top: 65vw;
+				margin-left: 81%;
+				width: 70px;
+				height: 70px;
+				border: 1px solid whitesmoke;
+				background: white;
+			}
+			
+			.mui-scroll {
+				background: white;
+			}
+			
+			.div2 img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.mui-table-view:before {
+				height: 0px;
+			}
+			
+			.mui-table-view {
+				margin-top: 10px;
+			}
+			
+			.mui-table-view-cell {
+				padding-top: 20px;
+			}
+			
+			.mui-table-view .mui-media-img {
+				width: 85%;
+				min-height: 5vw;
+				margin-left: 14%;
+			}
+			
+			.mui-table-view .mui-media-img {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			
+			.mui-table-view .mui-media-img .box {
+				height: 120px;
+				width: 120px;
+			}
+			
+			.mui-table-view .mui-media-img img {
+				/*width: 120px;
+				max-width:120px;
+				_width:expression(this.width > 120 ? "100px" : this.width);
+				height: 120px;
+				_height:expression(this.height > 120 ? "100px" : this.height);*/
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-table-view .mui-media-body span {
+				color: blueviolet;
+				font-family: "微软雅黑";
+				font-size: 17px;
+				font-weight: bolder;
+				padding-bottom: 3px;
+			}
+			
+			.mui-table-view .mui-media-body p {
+				color: black;
+				font-size: 16px;
+				padding-top: 10px;
+				font-family: "微软雅黑";
+				padding-bottom: 8px;
+			}
+			
+			.mui-ellipsis {
+				display: -webkit-box;
+				overflow: hidden;
+				white-space: normal!important;
+				text-overflow: ellipsis;
+				word-wrap: break-word;
+				-webkit-box-orient: vertical;
+			}
+			
+			.mui-table-view .mui-media-bottom {
+				float: left;
+				width: 100%;
+			}
+			
+			.mui-table-view .mui-media-bottom .datetime {
+				margin-left: 14%;
+				font-size: 10px;
+				color: darkgrey;
+			}
+			
+			.mui-table-view .mui-media-bottom .ic {
+				color: gray;
+				float: right;
+			}
+			
+			a:active {
+				background: white;
+			}
+			.fixed{
+				position: fixed;
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<!--<script src="js/mui.imageViewer.js"></script>-->
+		<script src="js/arttmpl.js"></script>
+		<script src="js/time.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			
+			var user_id = JSON.parse( localStorage.getItem('users')).user_id;
+			
+			var start = 1;
+			var add = 4;
+			var fcircle = [];
+
+			mui.init({
+				pullRefresh: {
+					container: "#scrol",
+					//					style:'circle',
+					down: {
+						style: 'circle',
+						color: '#2BD009',
+						height: '100px',
+						range: '50px',
+						offset: '0px',
+						auto: false,
+
+						callback: function() {
+							console.log('下拉刷新')
+							start = 1;
+							getfcircle(false, function() {
+								mui("#scrol").pullRefresh().endPulldownToRefresh();
+							})
+						}
+					},
+					up: {
+						style: 'circle',
+						color: '#2BD009',
+						height: '100px',
+						range: '50px',
+						offset: '0px',
+						auto: false,
+						callback: function() {
+							getfcircle(true, function() {
+								mui("#scrol").pullRefresh().endPullupToRefresh();
+							})
+						}
+					}
+				}
+			})
+
+			//哇，又发生了很神奇的错误，不得已用这个中文变量名
+			function getfcircle(zengjia, callback) {
+				console.log('向服务器请求fcircle数据')
+				var url = '192.168.137.1:8000/uplope_show/';
+				mui.ajax(url, {
+					data: {
+						user_id: user_id,
+						start: start,
+						add: add
+					},
+					type: 'get', //HTTP请求类型
+					success: function(data) {
+						if(data.code == 200) {
+							
+							console.log("得到了" + data.fcircle.length)
+							
+							if(data.fcircle.length == 0) {
+								mui.toast('没有更多了亲')
+								callback();
+								return;
+							}
+							
+							if(zengjia == true) {
+								console.log("增加数据...")
+								fcircle = fcircle.concat(bindFcircle(data.fcircle));
+
+							} else {
+								fcircle = bindFcircle(data.fcircle);
+							}
+
+							//更新start值
+							start += data.fcircle.length;
+							//将朋友圈缓存本地
+							localStorage.setItem('contactlist', JSON.stringify({
+								'fcircle': fcircle
+							}));
+							console.log('朋友圈数据:' + JSON.stringify(fcircle));
+						}
+
+						if(callback) callback();
+						renderFcircle(fcircle);
+					},
+					error: function(err) {
+						console.log('發生了错误' + err);
+					}
+				})
+
+			}
+
+			function bindFcircle(FcircleList) {
+
+				for(var j = 0; j < FcircleList.length; j++) {
+					FcircleList[j].publish_time = timeDistance(new Date(FcircleList[j].publish_time))
+					var temp = FcircleList[j].img_list;
+					var obj = JSON.parse(temp);
+					FcircleList[j]['img_list'] = obj;
+				}
+				//console.log('解析完成后:' + JSON.stringify(FcircleList));
+				return FcircleList;
+			}
+
+			function renderFcircle(FcircleList) {
+				var res = template("test", {
+					fcircle: FcircleList,
+					host: host
+				});
+				document.getElementById("Fcircle").innerHTML = res;
+				initImgPreview();
+			}
+			mui.ready(function() {
+				getfcircle();
+				document.getElementById("avatar").setAttribute("src", host + localStorage.getItem("avatarUrl"));
+
+				
+
+			})
+			function initImgPreview() {
+					var imgs = document.querySelectorAll("img.mui-action-preview");
+					imgs = mui.slice.call(imgs);
+					if(imgs && imgs.length > 0) {
+						var slider = document.createElement("div");
+						slider.setAttribute("id", "__mui-imageview__");
+						slider.classList.add("mui-slider");
+						slider.classList.add("mui-fullscreen");
+						slider.classList.add("fixed");
+						
+						slider.style.display = "none";
+						slider.addEventListener("tap", function() {
+							slider.style.display = "none";
+						});
+						slider.addEventListener("touchmove", function(event) {
+							event.preventDefault();
+						})
+						var slider_group = document.createElement("div");
+						slider_group.setAttribute("id", "__mui-imageview__group");
+						slider_group.classList.add("mui-slider-group");
+						imgs.forEach(function(value, index, array) {
+							//给图片添加点击事件，触发预览显示；
+							value.addEventListener('tap', function() {
+								slider.style.display = "block";
+								_slider.refresh();
+								_slider.gotoItem(index, 0);
+							})
+							var item = document.createElement("div");
+							item.classList.add("mui-slider-item");
+							var a = document.createElement("a");
+							var img = document.createElement("img");
+							img.setAttribute("src", value.src);
+							a.appendChild(img)
+							item.appendChild(a);
+							slider_group.appendChild(item);
+						});
+						slider.appendChild(slider_group);
+						document.body.appendChild(slider);
+						var _slider = mui(slider).slider();
+					}
+				}
+		</script>
+		<script src="js/template-web.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/html" id="test">
+			{{each fcircle item}}
+			<li class="mui-table-view-cell mui-media">
+				<a href="javascript:;">
+					<img class="mui-media-object mui-pull-left" src="<%=host+item.avatarUrl%>">
+
+					<div class="mui-media-body">
+						<span><%=item.nickname%></span>
+						<p class="mui-ellipsis">
+							<%=item.content%>
+						</p>
+					</div>
+					<div class="mui-media-img">
+
+						<%for(var i=0;i<item.img_list.imgs.length;i++){ %>
+						<div class="box">
+							<img src="<%=host+item.img_list.imgs[i]%>" class="mui-action-preview" />
+						</div>
+						<%}%>
+
+					</div>
+					<div class="mui-media-bottom">
+						<span class="datetime"><%=item.publish_time%><span>
+					    <span class="mui-icon mui-icon-left-nav ic" ></span>
+					</div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+		<script id='whr' type="text/html">
+			{{FcircleList}}
+
+		</script>
+		<header id="header" class="mui-bar mui-bar-transparent">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">朋友圈</h1>
+			<a class="mui-icon mui-icon-camera mui-pull-right" href="publish_f.html"></a>
+		</header>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper" style="background: #fff;" id="scrol">
+				<div class="mui-scroll">
+					<div class="div1">
+						<div class="div0" id="img_background" style="background-image: url(img/cellback.jpg);">
+							<div class="div2" id="img_head">
+								<img id="avatar" src="img/cbd.jpg" />
+							</div>
+						</div>
+					</div>
+					<ul class="mui-table-view" , id="Fcircle">
+						<!--content-->
+					</ul>
+
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>

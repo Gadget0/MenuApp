@@ -8,11 +8,10 @@
 		<link href = "css/mui.min.css" rel = "stylesheet" />
 		<style type = "text/css">
 			
-			#popover {
-				height: 100px;
-				width:200px;
+			.mui-bar .mui-pull-right{
+				padding-top: 15px;
+				font-size: 17px;
 			}
-			
 			.mui-content .mui-input-row {
 				line-height: 200%;
 			}
@@ -31,12 +30,13 @@
 				height: 0px;
 			}
 			
-			#img {
+			#user_img {
 				width: 7rem;
 				height: 7rem;
 				border: 0px;
 				margin-left: 37%;
 				border-radius: 50%;
+				box-shadow:0 0 1px goldenrod inset;
 			}
 			
 			
@@ -47,58 +47,52 @@
 		
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init({  
+			      beforeback: function() {   
+			    	var list = plus.webview.currentWebview().opener();
+			      //触发列表界面的自定义事件（refresh）,从而进行数据刷新   
+			      mui.fire(list, 'refresh');  
+			     //返回true，继续页面关闭逻辑     return true;  
+			     }  
+		
+		     });  
+
 		</script>
 		
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-icon-back mui-icon mui-icon-left-nav"></a>
-		    <a id="openPopover" class="mui-action-menu mui-icon mui-icon-more mui-pull-right" href="#popover"></a>
+			<a class="mui-icon-back mui-icon mui-icon-left-nav mui-action-back"></a>
+			<a id="set" class="mui-icon mui-icon-right-nav mui-action-back mui-pull-right"> 完成</a>
 		    <h1 class="mui-title">我的设置</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-input-row row1" >
-				<img id="img" src="image/超级截屏_20161118_142819.png"/>
+				<img id="user_img" src="image/超级截屏_20161118_142819.png"/>
 			</div>
-		    
-		    <div class="mui-input-row">
-		    	<label>昵称</label>
-		    	<input type="text" placeholder="编辑个性姓名" />
-		    </div>
+		   
 		    <div class="mui-input-row">
 		    	<label>签名</label>
-		    	<input type="text" placeholder="积极废人" />
+		    	<input id="user_name" type="text" placeholder="积极废人" />
 		    </div>
 		    <div class="mui-input-row">
 		    	<label>性别</label>
-		    	<input type="text" placeholder="男" />
+		    	<input id="user_sex"  type="text" placeholder="男" />
 		    </div>
 		    <div class="mui-input-row">
 		    	<label>生日</label>
-		    	<input type="text" placeholder="1997-10-19" />
+		    	<input id="user_birthday" type="text" placeholder="1997-10-19" />
 		    </div>
 		    <div class="mui-input-row">
 		    	<label>邮箱</label>
-		    	<input type="text" placeholder="319262687@qq.com" />
+		    	<input id="user_email" type="text" placeholder="319262687@qq.com" />
 		    </div>
 		    <div class="mui-input-row">
 		    	<label>个人说明</label>
-		    	<input type="text" placeholder="走不完的路" />
+		    	<input id="user_content" type="text" placeholder="走不完的路" />
 		    </div>
 		    
 		</div>
 		
-		
-		<div id="popover" class="mui-popover">
-			<div class="mui-scroll-wrapper">
-			    <div class="mui-scroll">
-				    <ul class="mui-table-view">
-				    	<li class="mui-table-view-cell"><a href="#" id="li1">拍照</a></li>
-				    	<li class="mui-table-view-cell"><a href="#" id="li2">打开系统相册</a></li>
-				    </ul>
-				</div>
-			</div>
-		</div>
-
+	
 		
 		
 		
@@ -106,39 +100,146 @@
 
 	<script type="text/javascript">
 		
-			mui.plusReady(function () {
+		mui.plusReady(function () {
 				
-				document.getElementById("li1").addEventListener("tap",function(){
-					
-					//打开系统相册
-					var carmer = plus.camera.getCamera();
-					
-					carmer.captureImage(function(path){
-						
-						var p = plus.io.convertLocalFileSystemURL(path);
-						
-						plus.gallery.save(p,function(){
-							alert("保存的系统相册");
-						},
-						function(){
-							alert("照片保存失败");
-						});
-						document.getElementById("img").src = p;
-						
-					},function(){
-						alert("获取图片失败");
+				var self = plus.webview.currentWebview();
+				
+				var user_list = JSON.parse(localStorage.getItem("users"));
+//				console.log(user_list);
+				document.getElementById("user_name").value = user_list.user_name;
+				document.getElementById("user_sex").value = user_list.user_sex;
+				document.getElementById("user_birthday").value = user_list.user_birthday;
+				document.getElementById("user_email").value = user_list.user_email;
+				document.getElementById("user_content").value =user_list.user_content;
+				var user_img = JSON.stringify(user_list.user_img);
+				document.getElementById("user_img").setAttribute("src",user_list.user_img);
+				var img_url = user_list.user_img;
+				
+				
+				
+				
+				//选择照片
+				document.getElementById("user_img").addEventListener("tap",function(){
+				var btnArray = [{title:"拍照"},{title:"从手机相册选择"}];
+				plus.nativeUI.actionSheet({
+					title:"更换头像",
+					cancel:"取消",
+					buttons:btnArray
+				},function(e){
+					var index = e.index;
+					switch (index){
+						case 0:
+							break;
+						case 1:
+							var carmer = plus.camera.getCamera();
+							carmer.captureImage(function(path){
+							
+							var p = plus.io.convertLocalFileSystemURL(path);
+								plus.gallery.save(p,function(){
+									alert("保存的系统相册");
+								},
+								function(){
+									alert("照片保存失败");
+								});
+								document.getElementById("user_img").src = p;
+								createUpload(path);
+								
+								},function(){
+								alert("获取图片失败");
+							})
+							break;
+						case 2:
+							plus.gallery.pick(function(path){	
+									document.getElementById("user_img").src = path;
+									
+									createUpload(path);
+									
+								},function(){
+												alert("照片选择失败");
+							})
+							break;
+						}
+			
 					})
-				});
-				document.getElementById("li2").addEventListener("tap",function(){
-					plus.gallery.pick(function(path){
-						document.getElementById("img").src = path;
-					},function(){
-						alert("照片选择失败");
-					})
-				});	
-			});
-//			mui('.mui-popover').popover("toggle",document.getElementById("openPopover"));
-			mui('.mui-scroll-wrapper').scroll()
+				})
+				
+				
+			
+					// 创建上传任务
+					function createUpload(files) {
+						var task = plus.uploader.createUpload( "http://192.168.137.1:8000/testuploder/", 
+							{ method:"POST",blocksize:204800,priority:100 },
+							function ( t, status ) {
+								// 上传完成
+								if ( status == 200 ) { 
+									console.log(JSON.stringify(t));
+									img_url = JSON.parse(t.responseText).url;
+									console.log( "Upload success: " + t.responseText );
+//									console.log("img_url: "+ img_url.url);
+								} else {
+									console.log( "Upload failed: " + status );
+								}
+							}
+						);
+						task.addFile( files, {key:"img_src"} );
+						task.addData( "string_key", "string_value" );
+						//task.addEventListener( "statechanged", onStateChanged, false );
+						task.start();
+					}
+				
+	
+				
+				//确认
+				
+				document.getElementById("set").addEventListener("tap",function(){
+					var str_email = document.getElementById("user_email").value;
+					var str_name = document.getElementById("user_name").value;
+					var str_sex = document.getElementById("user_sex").value;
+					var str_birthday = document.getElementById("user_birthday").value;
+					var str_content = document.getElementById("user_content").value;
+					var str_img = img_url;
+					
+	
+					console.log(str_img);
+					
+					var js = {
+										
+				                        'user_id':user_list.user_id,
+				                        'user_password':user_list.user_password,
+				                        'user_name':str_name,
+				                        'user_sex':str_sex,
+				                        'user_email':str_email,
+				                        'user_birthday':str_birthday,
+				                        'user_content':str_content,
+				                        'user_img':str_img,
+				                   };
+				    console.log(JSON.stringify(js));
+					
+						url = "http://192.168.137.1:8000/sets/";
+						mui.ajax(url,{
+				                    type:'post',
+				                    data:{
+				                        'user_id':user_list.user_id,
+				                        'user_name':str_name,
+				                        'user_sex':str_sex,
+				                        'user_email':str_email,
+				                        'user_birthday':str_birthday,
+				                        'user_content':str_content,
+				                        'user_img':str_img,
+				                    },
+				                    success:function( res ) {
+				                    	alert("成功")
+				                    	console.log(str_name);
+				                       	localStorage.setItem("users",JSON.stringify(js));
+				                    },
+				                    error:function( err ){
+				                    	alert("失败");
+				                        console.log(err);
+				                    }
+				        })
+				})
+				
+		});
 		
 
 	</script>

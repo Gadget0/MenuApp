@@ -44,10 +44,13 @@
 				border-radius: 50%;
 				border-radius: 100% 100% 100% 100%;
 				width:80px;
+				height: 80px;
+				 box-shadow:0 0 1px goldenrod inset;
 			}
 			.mui-input-group.div1 label{
 				
-				margin-left: 42%;
+				color: gray;
+				margin-left:38%;
 				
 			}
 			
@@ -85,49 +88,15 @@
 
 	<body>
 		<script src="js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init();
-			mui.plusReady(function(){
-				document.getElementById('deng').addEventListener('tap',function(){
-					mui.toast('请注册');
-					mui.openWindow({
-						url:'login.html',
-						id:'login.html',
-						show:{
-							 autoShow:true,
-							 aniShow:"zoom-fade-out",
-							 duration:1000
-						},
-						createNew:true
-					})
-				});
-				document.getElementById('setting').addEventListener('tap',function(){
-					mui.toast('我的设置');
-					mui.openWindow({
-						url:'setting.html',
-						id:'setting.html',
-						show:{
-							 autoShow:true,
-							 aniShow:"zoom-fade-out",
-							 duration:1000
-						},
-						createNew:true
-					})
-				});
-			})
-			  
-        
-   
-		</script>
+		
 		<div class="mui-content" >
 			<div class="mui-input-group div1">
-				<img src="image/超级截屏_20161118_142819.png" id="deng" class="IMG"/>
-				
-				<label>薛定谔的猫</label>
+				<img id="setting2" src="image/超级截屏_20161118_142819.png" class="IMG"/>
+				<label id="personname">用户名:</label>
 				
 			</div>
-			<div class="mui-input-group div2" >
-				<ul class="mui-table-view">
+			<div class="mui-input-group div2"  >
+				<ul class="mui-table-view" id="ul">
 				    <li class="mui-table-view-cell">
 				    	<a class="mui-navigate-right">我的资料</a>
 				    </li>
@@ -138,21 +107,58 @@
 				    	<a class="mui-navigate-right">我的收藏</a>
 				    </li>
 				    <li class="mui-table-view-cell">
-				    	<a class="mui-navigate-right" href="friend_circle.html">我的动态</a>
+				    	<a class="mui-navigate-right">我的动态</a>
 				    </li>
 				    <li class="mui-table-view-cell">
 				    	<a class="mui-navigate-right">我的会员</a>
 				    </li>
-				    <li class="mui-table-view-cell" id="setting">
+				    <li class="mui-table-view-cell">
 				    	<a class="mui-navigate-right">我的设置</a>
 				    </li>
 				</ul>
 			</div>
-			
 		    
 		</div>
-		
-		
 	</body>
-
+	<script type="text/javascript">
+			mui.init();
+			
+			
+			window.addEventListener('refresh', function(e) {  
+		        location.reload();   
+		        //逻辑处理
+		    })   
+			
+			
+			console.log(localStorage.getItem("users"));
+			var users = JSON.parse(localStorage.getItem("users"));
+		
+			document.getElementById("setting2").setAttribute("src",users.user_img);
+			
+			document.getElementById("personname").innerHTML = '用户名:'+ users.user_name;
+			
+			mui.plusReady(function(){
+				document.getElementById('setting2').addEventListener('tap',function(){
+//					mui.toast('我的设置');
+					mui.openWindow({
+						url:'setting.html',
+						id:'setting',
+						show:{
+							 autoShow:true,
+							 aniShow:"zoom-fade-out",
+							 duration:1000
+						},
+						createNew:true
+					})
+				});
+			})
+			 
+		mui("#ul").on("tap","li",function(){
+			mui.openWindow({
+				url:"friend_circle_2.html",
+				id:"friend_circle_2"
+			})
+		});
+	</script>
+	
 </html>
